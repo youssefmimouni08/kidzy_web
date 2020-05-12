@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<body style="font-family:Arial Unicode MS, Helvetica , Sans-Serif;">
+<div>
+
+    <img src="{{ asset('http://localhost/images/kidzy.jpg') }}"
+         style="max-width: 20%;"/>
+</div>
+
+
+<div>
+
+    <div align="center">
+        <div> <h2>
+            <strong>Attestation d'inscription</strong>
+        </h2></div></div>
+    <br><br><br><br><br><br>    <div style="font-size: 10pt; line-height: 14pt;">
+        <h3>
+
+            <strong> Nom  :</strong> {{  enfant.nomEnfant }}<br><br><br>
+            <strong> Prenom  : </strong>{{  enfant.prenomEnfant }}<br><br><br>
+            <strong> Club : </strong>{{  club.nomClub }}<br><br><br>
+            <strong> slogan  : </strong>{{  club.descriptionClub }}<br><br><br>
+            <strong> Date d'inscription  : </strong>{{  inscrit.dateInscrit |date }}<br><br><br>
+            <strong> Commentaire   : </strong>{{  inscrit.descriptionInscrit  }}<br><br><br>
+
+
+
+        </h3>
+    </div></div>
+<br><br><br><br><br><br><br><br><br>
+<div>
+
+    <img src="{{ asset('http://localhost/images/sig.jpg') }}"
+         style="max-width: 20%;" align="right"/>
+</div>
+</body>
+
+</html>

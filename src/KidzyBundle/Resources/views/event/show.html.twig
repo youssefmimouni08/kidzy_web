@@ -1,0 +1,74 @@
+{% extends 'baseadmin.html.twig' %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Details d'evenement</h4>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">ID d'evenement : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ event.idEvent }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Nom d'evenement : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ event.nomEvent }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Date d'evenement : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ event.dateEvent }} DT</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Prix d'evenement : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ event.prixEvent }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Description d'evenement : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ event.descrEvent }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Type d'evenement : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ event.typeEvent }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Lieu d'evenement : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ event.lieuEvent }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="button-list d-flex justify-content-start">
+                                <a  href="{{ path('event_index') }}" class="btn btn-primary waves-effect width-md waves-light">Retour</a>
+                                <a  href="{{ path('event_edit', { 'idEvent': event.idEvent }) }}" class="btn btn-secondary waves-effect width-md">Modifier</a>
+                                {{ form_start(delete_form) }}
+                                <input type="submit" class="btn btn-danger waves-effect width-md waves-light" value="Supprimer">
+                                {{ form_end(delete_form) }}
+                            </div>
+
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <section class="section bg-gradient" id="home" style="padding-bottom: 0px !important">
+    </section>
+    <section class="section bg-light" id="pricing">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title text-center mb-4">
+                        <h6 class="text-primary small-title"></h6>
+                        <h4>Votre/vos Enfant (s)</h4>
+                        <p class="text-muted">La liste des enfants .</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <a href="{{ path('enfant_add') }}" class="btn btn-success btn-md waves-effect waves-light mb-3" data-animation="fadein" data-plugin="custommodal"
+                       data-overlaySpeed="200" data-overlayColor="#36404a"><i class="mdi mdi-plus-circle-outline"></i> Ajouter votre enfant </a>
+                </div><!-- end col -->
+
+            <!-- end row -->
+                <div class="col-md-4" id="searchWrapper">
+            <li class="d-none d-sm-block right">
+
+                <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action="{{ path('enfant_search') }}">
+                    <div class="input-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..."name ="search">
+                            <div class="input-group-append">
+                                <button class="btn" type="submit">
+                                    <i class="fe-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+           
+            </li>
+            </div>
+            </div>
+            {% for message in app.flashes('success') %}
+
+                <div class="alert alert-success">
+                    {{ message }}
+
+                </div>
+            {% endfor %}
+            <div class="row" id="charactersList">
+
+
+                {% for enfant in parent.enfants %}
+
+
+                    <div class="col-lg-4">
+                        <form action="{{ path('modifier', { 'id': enfant.idEnfant }) }}">
+
+                            <div class="pricing-plans bg-white text-center p-4 mt-4">
+                                <div class="dropdown float-right">
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                                    </div>
+                                </div>
+
+
+                                <div>
+
+                                    {% if enfant.imageEnfant %}
+
+                                        <img src="{{ vich_uploader_asset(enfant ,'imageFile') | imagine_filter('thumb') }}" class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image">
+                                    {% else%}
+                                        <img src="{{ asset('images/enfants/enfant.png') | imagine_filter('thumb') }}" class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image">
+                                    {% endif %}
+
+
+
+                                    <div class="text-left">
+                                        <p class="text-muted font-13"><strong></strong><span class="ml-2"> </span></p>
+
+                                        <p class="text-muted font-13"><strong>Nom et prénom:</strong><span class="ml-2">{{ enfant.nomEnfant}} {{ enfant.prenomEnfant }} </span></p>
+
+                                        <p class="text-muted font-13"><strong>Classe :</strong> <span class="ml-2" value=classe1> {{ enfant.idClasse.libelleCla}}</span></p>
+
+                                        <p class="text-muted font-13"><strong>Date de naissance :</strong> <span class="ml-2"> {{ enfant.datenEnfant }}</span></p>
+                                    </div>
+
+
+                                    <div class="pt-4">
+                                        <input type="submit" class="btn btn-primary btn-rounded waves-effect waves-light" value="Modifier">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div> <!-- end col -->
+                {% endfor %}
+
+            </div>
+        </div>
+        <!-- end container-fluid -->
+
+    </section>
+
+
+
+
+    <script src="{{ asset('back/assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('back/assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}

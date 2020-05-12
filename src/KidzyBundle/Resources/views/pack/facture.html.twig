@@ -1,0 +1,80 @@
+{% extends 'baseadmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/custombox/custombox.min.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h1>Liste Des Factures</h1>
+
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date de Paiement</th>
+                                    <th>Total Facture</th>
+                                    <th>Informations Parent</th>
+                                    <th>Informations Enfant</th>
+                                    <th>Informations Pack</th>
+                                    <th>Payé</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for facture in factures %}
+                                    <tr>
+                                        <td>{{ facture.idFacture }} </td>
+                                        <td>{{ facture.dateFacture |localizeddate('none', 'none', app.request.locale, "Europe/Paris", "cccc d MMMM Y") }}</td>
+                                        <td>{{ facture.total }} DT</td>
+                                        <td><a href="">{{ facture.idParent.prenom }} {{ facture.idParent.nom }}</td>
+                                        <td><a href="">{{ facture.idEnf.prenomEnfant }} {{ facture.idEnf.nomEnfant }}</a></td>
+                                        <td><a href="{{ path('pack_show', { 'idPack': facture.pack.idPack }) }}">{{ facture.pack.nomPack }}</a></td>
+                                        {% if facture.paye == true %}
+                                            <td><i class="ti-check text-success"></i></td>
+                                        {% else %}
+                                            <td><i class="ti-close text-danger"></i></td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('back/assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('back/assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}

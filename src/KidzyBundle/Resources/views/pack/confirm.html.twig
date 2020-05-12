@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+{% block content %}
+<section class="bg-home bg-gradient" id="home" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3);padding-bottom: 40px !important">
+</section>
+    <section class="features" id="features">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-pills nav-justified features-tab mb-5" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-customize-tab" data-toggle="pill" href="#pills-customize" role="tab" aria-controls="pills-customize" aria-selected="true">
+                                <div class="clearfix">
+                                    <div class="features-icon float-right">
+                                        <i class="pe-7s-credit h1"></i>
+                                    </div>
+                                    <div class="d-none d-lg-block mr-4">
+                                        <h5>Confirmer Votre Achat</h5>
+                                        <p>Entrer vos informations de paiement !</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fades how active" id="pills-customize" role="tabpanel" aria-labelledby="pills-customize-tab">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-lg-4 col-sm-6">
+                                    <div>
+                                        <img src="{{ asset('front/images/features-img/img-2.png') }}" alt="" class="img-fluid mx-auto d-block">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 offset-lg-1">
+                                    <div>
+                                        <div class="feature-icon mb-4">
+                                            <i class="pe-7s-news-paper h1 text-primary"></i>
+                                        </div>
+                                        <h5 class="mb-3">Details de votre Pack : {{ pack.nomPack }}</h5>
+                                        <p class="text-muted">{{pack.descriptionPack}}</p>
+                                        <div class="row pt-4">
+                                            <div class="col-lg-6">
+                                                <div class="text-muted">
+                                                    {% for frai in pack.frais %}
+                                                    <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> {{frai.titre}} - {{ frai.prix }} DT</p>
+                                                    {% endfor %}
+                                                </div>
+                                                <h5 class="mb-3">Enfant : </h5>
+                                                <p><i class="mdi mdi-account-child text-primary mr-2 h6"></i> {{enfant.nomEnfant}} {{ enfant.prenomEnfant }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <a id="basic-photo-button" class="btn btn-custom">Payer <i class="mdi mdi-arrow-right ml-1"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- end row -->
+                        </div>
+                    </div>
+                    <!-- end tab-content -->
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container-fluid -->
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        // Replace with your own publishable key: https://dashboard.stripe.com/test/apikeys
+        var PUBLISHABLE_KEY = "pk_test_3yfrcRMLZ1g0LkmnKBddovxL00sPxb8Uoj";
+        // Replace with the domain you want your users to be redirected back to after payment
+
+        var stripe = Stripe(PUBLISHABLE_KEY);
+
+        var basicPhotoButton = document.getElementById("basic-photo-button");
+
+
+
+
+        // Handle any errors from Checkout
+        var handleResult = function(result) {
+            if (result.error) {
+                var displayError = document.getElementById("error-message");
+                displayError.textContent = result.error.message;
+            }
+        };
+
+        basicPhotoButton.addEventListener("click", function() {
+            stripe
+                .redirectToCheckout({
+                    sessionId: '{{CHECKOUT_SESSION_ID}}'
+                })
+                .then(handleResult);
+        });
+    </script>
+{% endblock %}

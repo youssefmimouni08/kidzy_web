@@ -1,0 +1,106 @@
+@-webkit-keyframes animationProgress {
+        from {
+            width: 0; } }
+
+    @keyframes animationProgress {
+        from {
+            width: 0; } }
+
+    label {
+        font-weight: 500;
+        color: #323a46; }
+
+    button:focus {
+        outline: none; }
+
+    pre {
+        background-color: #f1f5f7;
+        border: 1px solid #e4ecf0;
+        padding: 7px; }
+
+    .bg-success {
+        background-color: #D8CACA !important; }
+
+    a.bg-success:hover, a.bg-success:focus,
+    button.bg-success:hover,
+    button.bg-success:focus {
+        background-color: #0c9550 !important; }
+
+
+    progress-sm {
+        height: 5px !important; }
+
+    .progress {
+        margin-top: 18px; }
+
+    .progress-animated {
+        -webkit-animation-duration: 5s;
+        animation-duration: 5s;
+        -webkit-animation-name: animationProgress;
+        animation-name: animationProgress;
+        -webkit-transition: 5s all;
+        transition: 5s all; }
+
+
+    .progress-bar-alt-success {
+        background-color: rgba(16, 196, 105, 0.2); }
+
+    /* Progressbar Animated */
+    @-webkit-keyframes animationProgress {
+        from {
+            width: 0; } }
+
+    @keyframes animationProgress {
+        from {
+            width: 0; } }
+
+    label {
+        font-weight: 500;
+        color: #323a46; }
+
+    button:focus {
+        outline: none; }
+
+    pre {
+        background-color: #f1f5f7;
+        border: 1px solid #e4ecf0;
+        padding: 7px; }
+    .clearfix::after {
+        display: block;
+        clear: both;
+        content: ""; }
+    .row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -12px;
+        margin-left: -12px; }
+    .col-12 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%; }
+    .card-box {
+        background-color: #fff;
+        padding: 1.5rem;
+        -webkit-box-shadow: 0 0.75rem 6rem rgba(56, 65, 74, 0.03);
+        box-shadow: 0 0.75rem 6rem rgba(56, 65, 74, 0.03);
+        margin-bottom: 24px;
+        border-radius: 0.25rem; }
+    .card-box .card-drop {
+        color: #98a6ad;
+        font-size: 20px;
+        display: inline-block;
+        line-height: 1px; }
+    .container-fluid {
+        width: 100%;
+        padding-right: 12px;
+        padding-left: 12px;
+        margin-right: auto;
+        margin-left: auto; }
+.btn-success {
+    color: #fff;
+    background-color: #C1CC89;
+    border-color: #C1CC89; }

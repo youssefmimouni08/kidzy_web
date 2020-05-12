@@ -1,0 +1,97 @@
+{% extends 'baseadmin.html.twig' %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Details Enfant</h4>
+
+
+
+                            {% if enfant.imageEnfant %}
+
+                                <img src="{{ vich_uploader_asset(enfant ,'imageFile') | imagine_filter('thumb') }}" class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image">
+                            {% else%}
+
+                                <img src="{{ '/images/enfants/enfant.png' | imagine_filter('thumb') }}" class="rounded-circle avatar-xl img-thumbnail mb-2" alt="profile-image">
+                            {% endif %}
+
+
+
+
+                            <div class="form-group row">
+
+                                <label class="col-sm-2  col-form-label" for="simpleinput">ID : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ enfant.idEnfant }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Nom : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ enfant.nomEnfant}}</a></h3>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Prenom : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ enfant.prenomEnfant }} </a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Classe : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark"> {{ enfant.idClasse.libelleCla}} </a></h3>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Date de naissance : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ enfant.datenEnfant }} </a></h3>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Garderie : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ enfant.idGarde.nomGarde }} </a></h3>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">L'enfant de Mr/Mme : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ enfant.idParent }} </a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Numéro du parent : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ enfant.idParent.tel }} </a></h3>
+                                </div>
+                            </div>
+
+                            <div class="button-list d-flex justify-content-start">
+                                <a  href="{{ path('garde_list', { 'idGarde': garde.idGarde }) }}" class="btn btn-primary waves-effect width-md waves-light">Retour</a>
+
+                            </div>
+
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

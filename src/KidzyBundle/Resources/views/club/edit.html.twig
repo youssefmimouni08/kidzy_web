@@ -1,0 +1,67 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Modifier Club</h4>
+                            {% for message in app.flashes('info') %}
+
+                                <div class="alert alert-success">
+                                    {{ message }}
+
+                                </div>
+                            {% endfor %}
+                            {{ form_start(edit_form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                            <div class="form-group row">
+                                {{ form_label(edit_form.nomClub ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(edit_form.nomClub , {'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
+                                </div>
+                                {{ form_errors(edit_form.nomClub) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(edit_form.descriptionClub ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(edit_form.descriptionClub , {'attr': {'class': 'form-control' , 'placeholder': 'Description' }}) }}
+                                </div>
+                                {{ form_errors(edit_form.descriptionClub) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(edit_form.adresseClub ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(edit_form.adresseClub , {'attr': {'class': 'form-control' , 'placeholder': 'Adresse' }}) }}
+                                </div>
+                                {{ form_errors(edit_form.adresseClub) }}
+                            </div>
+                            <div class="button-list d-flex justify-content-start">
+
+                            {{ form_widget(edit_form) }}
+                            <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Modifier">
+                                {{ form_end(edit_form) }}
+                                {{ form_start(delete_form) }}
+                                <input type="submit" class="btn btn-danger waves-effect width-md waves-light" value="Supprimer">
+                                {{ form_end(delete_form) }}
+                                <a class="btn btn-secondary waves-effect waves-light" href="{{ path('club') }}"> Retour </a>
+
+
+                            </div>
+
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

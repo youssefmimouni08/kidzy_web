@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <section class="section bg-gradient" id="home" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3); padding-bottom: 10px !important">
+    </section>
+    <section class="section bg-light" id="pricing" style="padding-bottom: 600px !important">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title text-center mb-4">
+                        <h6 class="text-primary small-title"></h6>
+                        <h4>Mes Avis </h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <!-- end row -->
+            <div class="row">
+
+        {% for enfant in parent.avis %}
+            <div class="col-md-6 col-xl-3">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <h4 class="card-title">Description</h4>
+                        <p class="card-text">{{ enfant.descriptionAvis}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Date </li>
+                        <li class="list-group-item">{{ enfant.dateAvis |date}}</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="{{ path('avis_supprimer', { 'idAvis': enfant.idAvis }) }}" class="card-link">Supprimer</a>
+
+                        <a href="{{ path('avis_edit', { 'idAvis': enfant.idAvis }) }}" class="card-link">Modifier</a>
+
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+
+        <!-- end container-fluid -->
+            </div>
+            <div class="text-center" style="">{{ knp_pagination_render(avis) }} </div>
+        </div>
+    </section>
+{% endblock %}

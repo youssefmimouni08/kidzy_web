@@ -1,0 +1,63 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="account-pages mt-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="text-center">
+                </div>
+                <div class="card">
+                    <div class="card-body p-4">
+
+                        <div class="text-center mb-4">
+                            <h4 class="text-uppercase mt-0">Se Connecter</h4>
+                        </div>
+                        {% if error %}
+                            <div class="alert alert-warning">
+                                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                <div class="alert-text">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            </div>
+                        {% endif %}
+                        <form  action="{{ path("fos_user_security_check") }}" method="post">
+                            {% if csrf_token %}
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                            {% endif %}
+                            <div class="form-group mb-3">
+                                <label for="emailaddress">{{ 'security.login.username'|trans }}</label>
+                                <input class="form-control" type="text" id="username" name="_username" required="" placeholder="Entrer votre email">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="password">{{ 'security.login.password'|trans }}</label>
+                                <input class="form-control" type="password" required="" id="password" name="_password" placeholder="Entrer votre mot de passe">
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="remember_me" name="_remember_me" />
+                                    <label class="custom-control-label" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-0 text-center">
+                                <button class="btn btn-primary btn-block" type="submit"> {{ 'security.login.submit'|trans }} </button>
+                            </div>
+
+                        </form>
+
+                    </div> <!-- end card-body -->
+                </div>
+                <!-- end card -->
+
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p> <a href="{{ path("fos_user_resetting_request") }}" class="text-muted ml-1"><i class="fa fa-lock mr-1"></i>Mot De Passe Oublié ?</a></p>
+                        <p class="text-muted">Pas Encore Membre ? <a href="{{ path("fos_user_registration_register") }}" class="text-dark ml-1"><b>Créer un Compte!</b></a></p>
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>

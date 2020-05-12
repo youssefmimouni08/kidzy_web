@@ -1,0 +1,28 @@
+classe_index:
+    path:     admin/
+    defaults: { _controller: "ClasseBundle:Classe:index" }
+    methods:  GET
+
+classe_show:
+    path:     admin/{idClasse}/show
+    defaults: { _controller: "ClasseBundle:Classe:show" }
+    methods:  GET
+
+classe_new:
+    path:     admin/new
+    defaults: { _controller: "ClasseBundle:Classe:new" }
+    methods:  [GET, POST]
+
+classe_edit:
+    path:     admin/{idClasse}/edit
+    defaults: { _controller: "ClasseBundle:Classe:edit" }
+    methods:  [GET, POST]
+
+classe_delete:
+    path:     admin/{idClasse}/delete
+    defaults: { _controller: "ClasseBundle:Classe:delete" }
+    methods:  DELETE
+classe_export:
+    path:     admin/export
+    defaults: { _controller: "ClasseBundle:Classe:export" }
+

@@ -1,0 +1,96 @@
+{% extends 'baseadmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+{% block content %}
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h1>Club list</h1>
+
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th >ID</th>
+                                    <th>Nom</th>
+                                    <th>Descriptions</th>
+                                    <th>Adresse</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+                                {% for c in club %}
+                                    <tr>
+                                        <td>  <a href="{{ path('club_show', { 'idClub': c.idClub }) }}">{{ c.idClub }}</a></td>
+                                         <td>{{ c.nomClub }}</td>
+                                        <td><p>{{ c.descriptionClub }}</p></td>
+                                        <td>{{ c.adresseClub }}</td>
+                                        <td>
+                                            <h4>  <a  href="{{ path('inscription_enfantAdmin', { 'idClub': c.idClub }) }}">
+                                                Liste des enfants
+                                            </a></h4></td>
+                                        <td>
+                                            <a class="btn btn-primary waves-effect waves-light mr-1" href ="{{ path('club_show', { 'idClub': c.idClub }) }}">
+                                                Details
+                                            </a></td>
+                                        <td>
+                                            <a class="btn btn-primary waves-effect waves-light mr-1" href="{{ path('club_edit', { 'idClub': c.idClub }) }}">
+                                                Modifier
+                                            </a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <ul>
+                                <li>
+                                <h4>
+
+                                <a href="{{ path('club_new') }}">Ajouter Club</a>
+                                </h4>
+                                </li>
+
+                            </ul>
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('back/assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('back/assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}
+

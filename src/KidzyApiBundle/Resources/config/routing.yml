@@ -1,0 +1,18 @@
+kidzy_api_homepage:
+    path:     /
+    defaults: { _controller: KidzyApiBundle:Default:index }
+allpacks:
+    path: /packs/all
+    defaults: {_controller: KidzyApiBundle:Pricing:allPack}
+findpack:
+    path: /packs/find/{id}
+    defaults: {_controller: KidzyApiBundle:Pricing:findPack}
+allfactures:
+    path: /factures/all
+    defaults: {_controller: KidzyApiBundle:Pricing:allFacture}
+findfacture:
+    path: /factures/find/{id}
+    defaults: {_controller: KidzyApiBundle:Pricing:findFacture}
+create_facture:
+    path: /factures/new/
+    defaults: {_controller: KidzyApiBundle:Pricing:newFacture}

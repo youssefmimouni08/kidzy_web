@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+<section class="section bg-gradient" id="home" style="padding-bottom: 0px !important">
+</section>
+<section class="section bg-light" id="pricing">
+    <div class="content-page">
+        <div class="content">
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                <h5 class="text-primary small-title">Détails  </h5>
+
+                </div>
+                <div class="form-group row">
+                    <h1 class="col-sm-2  col-form-label" for="simpleinput">Enfant : </h1>
+                                <div class="col-sm-7">
+                                    <h5 ><a >{{  enfant.nomEnfant|escape }} {{  enfant.prenomEnfant }}</a></h5>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h1 class="col-sm-2  col-form-label" for="simpleinput">Club : </h1>
+                                <div class="col-sm-7">
+                                    <h5 class="mt-0"><a class="text-dark">{{ clubs.nomClub }}</a></h5>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h1 class="col-sm-2  col-form-label" for="simpleinput">Slogan: </h1>
+                                <div class="col-sm-7">
+                                    <h5 class="mt-0"><a class="text-dark">{{ clubs.descriptionClub }} </a></h5>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h1 class="col-sm-2  col-form-label" for="simpleinput">Adresse : </h1>
+                                <div class="col-sm-7">
+                                    <h5 class="mt-0"><a class="text-dark">{{ clubs.adresseClub }} </a></h5>
+                                </div>
+                            </div>
+                <div class="form-group row">
+                    <h1 class="col-sm-2  col-form-label" for="simpleinput">Date d'inscription : </h1>
+                    <div class="col-sm-7">
+                        <h5 class="mt-0"><a class="text-dark">{{ inscription.dateInscrit |date }} </a></h5>
+                    </div>
+                </div><div class="form-group row">
+                    <h1 class="col-sm-2  col-form-label" >Description : </h1>
+                    <div class="col-sm-7">
+                        <h5 class="mt-0"><a class="text-dark">{{ inscription.descriptionInscrit }} </a></h5>
+                    </div>
+                </div>
+                        <h5 class="text-primary small-title"> <a  href="{{ path('club_showEvent', { 'idClub': clubs.idClub }) }}">Liste des événements </a> </h5>
+
+                    <div class="title text-center mb-4">
+                        {{ form_start(delete_form) }}
+                        <a  href="{{ path('print_club', { 'idEnfant': enfant.idEnfant ,'idInscrit':inscription.IdInscrit,'idClub': clubs.idClub}) }}" class="btn btn-primary waves-effect width-md waves-light">Attestation</a>
+
+                        <input type="submit" class="btn btn-danger waves-effect width-md waves-light" value="Quitter">
+
+                        <a  href="{{ path('clubParent') }}" class="btn btn-primary waves-effect width-md waves-light">Retour</a>
+                        {{ form_end(delete_form) }}
+                    </div>
+
+
+                        <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+</section>
+
+{% endblock %}

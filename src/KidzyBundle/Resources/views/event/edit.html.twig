@@ -1,0 +1,78 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Modifier evenement</h4>
+
+                            {{ form_start(edit_form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                            <div class="form-group row">
+                                {{ form_label(edit_form.nomEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(edit_form.nomEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Nom d evenement'}}) }}
+                                </div>
+                                {{ form_errors(edit_form.nomEvent) }}
+                                <div class="form-group row">
+                                    {{ form_label(edit_form.dateEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                    <div class="col-sm-7">
+                                        {{ form_widget(edit_form.dateEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Date evenement' }}) }}
+                                    </div>
+                                    {{ form_errors(edit_form.dateEvent) }}
+                                </div>
+                                <div class="form-group row">
+                                    {{ form_label(edit_form.prixEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                    <div class="col-sm-7">
+                                        {{ form_widget(edit_form.prixEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Prix evenement' }}) }}
+                                    </div>
+                                    {{ form_errors(edit_form.prixEvent) }}
+                                </div>
+                                <div class="form-group row">
+                                    {{ form_label(edit_form.descrEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                    <div class="col-sm-7">
+                                        {{ form_widget(edit_form.descrEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Description evenement' }}) }}
+                                    </div>
+                                    {{ form_errors(edit_form.descrEvent) }}
+                                </div>
+                                <div class="form-group row">
+                                    {{ form_label(edit_form.typeEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                    <div class="col-sm-7">
+                                        {{ form_widget(edit_form.typeEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Type evenement' }}) }}
+                                    </div>
+                                    {{ form_errors(edit_form.typeEvent) }}
+                                </div>
+                                <div class="form-group row">
+                                    {{ form_label(edit_form.lieuEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                    <div class="col-sm-7">
+                                        {{ form_widget(edit_form.lieuEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Lieu evenement' }}) }}
+                                    </div>
+                                    {{ form_errors(edit_form.lieuEvent) }}
+                                </div>
+                            <div class="button-list d-flex justify-content-start">
+                            {{ form_widget(edit_form) }}
+                            <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Modifier">
+                                {{ form_end(edit_form) }}
+                                {{ form_start(delete_form) }}
+                                <input type="submit" class="btn btn-danger waves-effect width-md waves-light" value="Supprimer">
+                                {{ form_end(delete_form) }}
+                                <a class="btn btn-secondary waves-effect waves-light" href="{{ path('event_index') }}"> Retour </a>
+                            </div>
+
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

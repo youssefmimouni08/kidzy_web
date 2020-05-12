@@ -1,0 +1,84 @@
+{% extends 'baseadmin.html.twig' %}
+{% form_theme form 'form/form_errors.html.twig' %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Ajouter evenement</h4>
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                            <div class="form-group row">
+                                {{ form_label(form.imageFile) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.imageFile) }}
+                                </div>
+                                {{ form_errors(form.imageFile) }}
+                            </div>
+                            <div class="form-group row">
+                                    {{ form_label(form.nomEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                    <div class="col-sm-7">
+                                        {{ form_widget(form.nomEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Nom d evenement'}}) }}
+                                    </div>
+                                    {{ form_errors(form.nomEvent) }}
+                                </div>
+                                <div class="form-group row">
+                                    {{ form_label(form.dateEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                    <div class="col-sm-7">
+                                        {{ form_widget(form.dateEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Date d evenement' }}) }}
+                                    </div>
+                                    {{ form_errors(form.dateEvent) }}
+                                </div>
+                            <div class="form-group row">
+                                {{ form_label(form.prixEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.prixEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Prix d evenement' }}) }}
+                                </div>
+                                {{ form_errors(form.prixEvent) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.descrEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.descrEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Description d evenement' }}) }}
+                                </div>
+                                {{ form_errors(form.descrEvent) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.typeEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.typeEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Type d evenement' }}) }}
+                                </div>
+                                {{ form_errors(form.typeEvent) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.lieuEvent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.lieuEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Lieu d evenement' }}) }}
+                                </div>
+                                {{ form_errors(form.lieuEvent) }}
+                            </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-4 col-sm-8">
+                                        {{ form_widget(form) }}
+                                        <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Confirmer">
+                                        <a class="btn btn-secondary waves-effect waves-light" href="{{ path('event_index') }}">
+                                            Annuler
+                                        </a>
+                                    </div>
+                                </div>
+                            {{ form_end(form) }}
+                        </div><!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

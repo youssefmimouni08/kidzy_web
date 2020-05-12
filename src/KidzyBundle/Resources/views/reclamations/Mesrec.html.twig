@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <section class="section bg-gradient" id="home" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3); padding-bottom: 10px !important">
+    </section>
+    <section class="section bg-light" id="pricing" style="padding-bottom: 500px !important">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title text-center mb-4">
+                        <h6 class="text-primary small-title"></h6>
+                        <h4>Mes Réclamations </h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <a href="{{ path('reclamations_new') }}" class="btn btn-success btn-md waves-effect waves-light mb-3" data-animation="fadein" data-plugin="custommodal"
+                       data-overlaySpeed="200" data-overlayColor="#36404a"><i class="mdi mdi-plus-circle-outline"></i> Ajouter Reclamations </a>
+
+                </div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+
+                {% for rec in parent.rec %}
+
+
+                    <div class="col-lg-4">
+                        <form action="">
+
+                            <div class="pricing-plans bg-white text-center p-4 mt-4">
+                                <div class="dropdown float-right">
+
+
+                                </div>
+                                <div>
+
+
+                                    <div class="text-left">
+                                        <p class="text-muted font-13"><strong>Description  :</strong> <span class="ml-2"> {{  rec.descriptionRec}}   </span></p>
+
+                                        <p class="text-muted font-13"><strong>Date:</strong><span class="ml-2">{{ rec.dateRec |date}} </span></p>
+
+                                        <p class="text-muted font-13"><strong>Nom maitresse :</strong> <span class="ml-2"> {{ rec.idM}} </span></p>
+
+
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div> <!-- end col -->
+                {% endfor %}
+
+            </div>
+            <div class="text-center" style="">{{ knp_pagination_render(rec) }} </div>
+        </div>
+        <!-- end container-fluid -->
+
+    </section>
+{% endblock %}

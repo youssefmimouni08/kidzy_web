@@ -1,0 +1,37 @@
+club:
+    path:     /affichage
+    defaults: { _controller: KidzyBundle:Club:index}
+clubParent:
+    path:     /liste
+    defaults: { _controller: KidzyBundle:Club:indexParent}
+clubindexFront:
+    path:     /listes
+    defaults: { _controller: KidzyBundle:Club:indexClub}
+club_new:
+    path:   admin/new
+    defaults: { _controller: KidzyBundle:Club:new }
+    methods:  [GET, POST]
+club_show:
+    path:     admin/{idClub}/show
+    defaults: { _controller: KidzyBundle:Club:show }
+    methods:  GET
+club_delete:
+    path:     admin/{idClub}/delete
+    defaults: { _controller: KidzyBundle:Club:delete }
+    methods:  DELETE
+club_edit:
+    path:     admin/{idClub}/edit
+    defaults: { _controller: KidzyBundle:Club:edit }
+    methods:  [GET, POST]
+club_showEvent:
+    path:     front/{idClub}/showEvent
+    defaults: { _controller: KidzyBundle:Club:showEvent }
+    methods:  GET
+club_charts:
+    path:     admin/charts
+    defaults: { _controller: KidzyBundle:Club:charts }
+    methods:  GET
+print_club:
+    path:     front/{idEnfant}/{idInscrit}/{idClub}/print
+    defaults: { _controller: KidzyBundle:Club:print }
+    methods:  GET

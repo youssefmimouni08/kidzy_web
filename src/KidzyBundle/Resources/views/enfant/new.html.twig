@@ -1,0 +1,86 @@
+{% extends 'baseadmin.html.twig' %}
+{% form_theme form 'form/form_errors.html.twig' %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Ajout Enfant </h4>
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+
+                            <div class="form-group row">
+                                {{ form_label(form.imageFile,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.imageFile , {'attr': {'class': 'form-control' , 'placeholder': 'Image'}}) }}
+                                </div>
+                                {{ form_errors(form.imageFile) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.nomEnfant ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.nomEnfant, {'attr': {'class': 'form-control' , 'placeholder': 'Nom' }}) }}
+                                </div>
+                                {{ form_errors(form.nomEnfant) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.prenomEnfant ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.prenomEnfant, {'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
+                                </div>
+                                {{ form_errors(form.prenomEnfant) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.idClasse ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.idClasse , {'attr': {'class': 'form-control' , 'placeholder': 'Classe'}}) }}
+                                </div>
+                                {{ form_errors(form.idClasse) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.datenEnfant ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.datenEnfant, {'attr': {'class': 'form-control' , 'placeholder': 'Date de naissnace'}}) }}
+                                </div>
+                                {{ form_errors(form.datenEnfant )}}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.idGarde,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.idGarde , {'attr': {'class': 'form-control' , 'placeholder': 'Garderie'}}) }}
+                                </div>
+                                {{ form_errors(form.idGarde) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.idParent ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+
+                                    {{ form_widget(form.idParent , {'attr': {'class': 'form-control' , 'placeholder': 'L\'enfant de'}}) }}
+                                </div>
+                                {{ form_errors(form.idParent) }}
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-sm-4 col-sm-8">
+                                    {{ form_widget(form) }}
+                                    <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Confimer">
+                                    <a class="btn btn-secondary waves-effect waves-light" href="{{ path('enfant_index') }}">
+                                        Annuler
+                                    </a>
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </div><!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+reclamations_index:
+    path:     admin/
+    defaults: { _controller: "KidzyBundle:Reclamations:index" }
+    methods:  GET
+
+reclamations_show:
+    path:     admin/{idRec}/show
+    defaults: { _controller: "KidzyBundle:Reclamations:show" }
+    methods:  GET
+
+reclamations_new:
+    path:     admin/new
+    defaults: { _controller: "KidzyBundle:Reclamations:new" }
+    methods:  [GET, POST]
+
+reclamations_edit:
+    path:     admin/{idRec}/edit
+    defaults: { _controller: "KidzyBundle:Reclamations:edit" }
+    methods:  [GET, POST]
+
+reclamations_delete:
+    path:     admin/{idRec}/delete
+    defaults: { _controller: "KidzyBundle:Reclamations:delete" }
+    methods:  DELETE
+MesRec:
+    path:     /Mesrec
+    defaults: { _controller: "KidzyBundle:Reclamations:MesRec" }
+
+printrec:
+    path:     /print/{idRec}
+    defaults: { _controller: "KidzyBundle:Reclamations:print" }
+
+chartsR:
+    path:     /chartsR
+    defaults: { _controller: "KidzyBundle:Reclamations:chartsR" }

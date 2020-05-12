@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <section class="section bg-gradient" id="home" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3); padding-bottom: 10px !important">
+    </section>
+    <section class="section bg-light" id="pricing" style="padding-bottom: 300px !important">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title text-center mb-4">
+                        <h4> </h4>
+                        <h4 class="text-primary small-title">Mes clubs </h4>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+                {% for c in club %}
+
+                    <div class="col-lg-4">
+                            <div class="pricing-plans bg-white text-center p-4 mt-4">
+                                <h5 class="plan-title mt-2 mb-4">{{ c.nomClub }}</h5>
+
+                                <div class="plan-price">
+                                    <h5 class="plan-duration text-muted font-18">{{  c.nomEnfant|escape }} {{  c.prenomEnfant }}</h5>
+                                </div>
+
+
+
+
+                                <div class="pt-4">
+                                    <a  class="btn btn-custom btn-block" style="background-color: #C1CC89 ;border-color: #C1CC89 !important;" href="{{ path('club_showParent', { 'idClub': c.idClub ,'idEnfant':c.idEnfant,'idInscrit':c.idInscrit}) }}">Details</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <div class="title text-center mb-4">
+
+                <h5>      </h5>
+
+            </div>
+            <div class="title text-center mb-4">
+
+
+                <a align ="right"class="btn btn-secondary waves-effect waves-light" href="{{ path('clubindexFront')}}">
+                   Autre  Clubs
+                </a>
+            </div>
+            <!-- end row -->
+        </div>
+        <div class=" text-center" style="">{{ knp_pagination_render(club) }}
+
+
+        </div>
+        <!-- end container-fluid -->
+    </section>
+
+{% endblock %}

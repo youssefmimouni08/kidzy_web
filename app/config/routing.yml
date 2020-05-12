@@ -1,0 +1,24 @@
+kidzy_api:
+    resource: "@KidzyApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+
+classe:
+    resource: "@ClasseBundle/Resources/config/routing.yml"
+    prefix:   /Classe
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+kidzy:
+    resource: "@KidzyBundle/Resources/config/routing.yml"
+    prefix:   /kidzy
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

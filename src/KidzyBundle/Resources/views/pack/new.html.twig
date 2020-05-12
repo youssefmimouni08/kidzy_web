@@ -1,0 +1,103 @@
+{% extends 'baseadmin.html.twig' %}
+{% form_theme form 'form/form_errors.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet"/>
+
+    <link href="{{ asset('back/assets/libs/multiselect/multi-select.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h1>Pack creation</h1>
+
+                            {{ form_start(form , {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                            <div class="form-group row">
+                                {{ form_label(form.nomPack ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.nomPack , {'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
+                                </div>
+                                {{ form_errors(form.nomPack) }}
+                            </div>
+                            <div class="form-group row" hidden>
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.prixPack , {'attr': {'class': 'form-control' , 'placeholder': 'Prix'}}) }}
+                                </div>
+                                {{ form_errors(form.prixPack) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.descriptionPack ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.descriptionPack , {'attr': {'class': 'form-control' , 'placeholder': 'Description'}}) }}
+                                </div>
+                                {{ form_errors(form.descriptionPack) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.frais ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.frais , {'attr': {'multiple':'multiple' , 'class':'multi-select' , 'name':'my_multi_select1[]' , 'data-plugin':'multiselect'}}) }}
+                                </div>
+                                {{ form_errors(form.frais) }}
+                            </div>
+                            <div class="offset-xl-3">
+                                <h3 class="text-right">Total : <span id="tot"> 150 </span> DT</h3>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-sm-4 col-sm-8">
+                                    {{ form_widget(form) }}
+                                    <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Confimer">
+                                    <a class="btn btn-secondary waves-effect waves-light" href="{{ path('frais_index') }}">
+                                        Annuler
+                                    </a>
+                                </div>
+                            </div>
+                        </div><!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('back/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/multiselect/jquery.multi-select.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/jquery-quicksearch/jquery.quicksearch.min.js') }}"></script>
+
+    <script src="{{ asset('back/assets/libs/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+
+    <!-- Init js-->
+    <script src="{{ asset('back/assets/js/pages/form-advanced.init.js') }}"></script>
+
+    <script>
+        $('.ms-selectable > ul > li').click(function() {
+            old = document.getElementById('tot').innerText;
+            add = this.innerText.match(/\d+/g).map(Number);
+            document.getElementById('tot').innerText = Number(old) + Number(add);
+            document.getElementById('kidzybundle_pack_prixPack').value = Number(old) + Number(add);
+
+        });
+
+        $('.ms-selection > ul > li').click(function() {
+            old = document.getElementById('tot').innerText;
+            add = this.innerText.match(/\d+/g).map(Number);
+            document.getElementById('tot').innerText = Number(old) - Number(add);
+            document.getElementById('kidzybundle_pack_prixPack').value = Number(old) - Number(add);
+        })
+    </script>
+{% endblock %}

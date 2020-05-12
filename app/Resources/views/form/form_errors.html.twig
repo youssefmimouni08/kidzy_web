@@ -1,0 +1,9 @@
+{% block form_errors %}
+    {% spaceless %}
+        {% for error in errors %}
+            <ul class="parsley-errors-list filled" id="parsley-id-18">
+                <li class="parsley-required">{{ error.message }}</li>
+            </ul>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock %}

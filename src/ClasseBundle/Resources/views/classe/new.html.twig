@@ -1,0 +1,49 @@
+{% extends 'baseadmin.html.twig' %}
+{% form_theme form 'form/form_errors.html.twig' %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Ajout Classe</h4>
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                            <div class="form-group row">
+                                {{ form_label(form.libelleCla ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.libelleCla , {'attr': {'class': 'form-control' , 'placeholder': 'Libelle Classe'}}) }}
+                                </div>
+                                {{ form_errors(form.libelleCla) }}
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.description ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(form.description , {'attr': {'class': 'form-control' , 'placeholder': 'description' }}) }}
+                                </div>
+                                {{ form_errors(form.description) }}
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-sm-4 col-sm-8">
+                                    {{ form_widget(form) }}
+                                    <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Confirmer">
+                                    <a class="btn btn-secondary waves-effect waves-light" href="{{ path('classe_index') }}">
+                                        Annuler
+                                    </a>
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </div><!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

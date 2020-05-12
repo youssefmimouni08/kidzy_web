@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+    <section class="bg-home bg-gradient" id="home" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3) !important">
+        <div class="home-center">
+            <div class="home-desc-center">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="home-title text-white">
+                                <h5 class="mb-3 text-white-50"style="font-family:Calibri,cursive ;font-weight: bold;color: #d92351 !important;">BIENVENUE SUR KIDZY</h5>
+                                <h2 class="mb-4"style="font-family:Calibri,cursive ;font-weight: bold;color: #333333 !important;">L'apprentissage est amusant pour votre enfant</h2>
+                                <p class="text-white-50 home-desc font-16 mb-5"style="font-family:Calibri,cursive ;font-weight: bold; !important;">Kidzy est une jardin d'enfants qui s'engage à fournir un programme qui se concentre sur le développement des jeunes enfants à travers une expérience bien équilibrée. </p>
+                                <div class="watch-video mt-5">
+                                    <a href="#" class="btn btn-custom mr-4">Get Started <i class="mdi mdi-chevron-right ml-1"></i></a>
+                                    <a href="http://vimeo.com/99025203" class="video-play-icon text-white"><i class="mdi mdi-play play-icon-circle mr-2"></i> <span>Watch The Video</span></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-5 offset-lg-1 col-sm-6">
+                            <div class="home-img mo-mt-20">
+                                <img src="{{ asset('front/images/kidsf.png') }}" alt="" class="img-fluid mx-auto d-block">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                </div>
+                <!-- end container-fluid -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

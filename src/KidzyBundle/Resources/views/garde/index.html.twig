@@ -1,0 +1,101 @@
+{% extends 'baseadmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+{% block content %}
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h1>Garderie list</h1>
+
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th >ID</th>
+                                    <th>Nom</th>
+                                    <th>Horraire</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+                                {% for garde in gardes %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('garde_show', { 'idGarde': garde.idGarde }) }}">{{ garde.idGarde }}</a>
+                                        </td>
+                                        <td>{{ garde.nomGarde }}</td>
+                                        <td>{{ garde.dureeGarde }} </td>
+
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('garde_show', { 'idGarde': garde.idGarde }) }}"><i class="dripicons-blog"></i> | Afficher Les Details</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('garde_list', { 'idGarde': garde.idGarde }) }}"><i class="dripicons-blog"></i> | Afficher La Liste des enfants</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('garde_edit', { 'idGarde': garde.idGarde }) }}"><i class="dripicons-pencil"></i> | Modifier</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <ul>
+                                <li>
+                                    <a href="{{ path('garde_new') }}">Ajouter Garderie</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ path('charts')}}"> Statistiques par garderie</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ path('garde_newEnfant')}}"> Ajouter Un Enfant Dans Une Garderie</a>
+                                </li>
+
+                            </ul>
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('back/assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('back/assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}

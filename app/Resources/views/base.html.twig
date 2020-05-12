@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Kidzy{% endblock %}</title>
+    {% block stylesheets %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}" type="text/css">
+
+        <!--Material Icon -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('front/css/materialdesignicons.min.css') }}"/>
+
+        <link href="{{ asset('back/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
+
+        <!--pe-7 Icon -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('front/css/pe-icon-7-stroke.css') }}"/>
+
+        <!-- Magnific-popup -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('front/css/magnific-popup.css') }}">
+
+        <!-- Custom  sCss -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('front/css/style.css') }}"/>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+
+
+            .dropdown555 {
+                float: left;
+                overflow: hidden;
+            }
+
+            .dropdown555 .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .navbar a:hover, .dropdown555:hover .dropbtn {
+                background-color: whitesmoke;
+            }
+
+            .dropdown-content5555 {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content5555 a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+            .dropdown-content5555 a:hover {
+                background-color: #ddd;
+            }
+
+            .dropdown555:hover .dropdown-content5555 {
+                display: block;
+            }
+        </style>
+
+    {% endblock %}
+    <link rel="shortcut icon" href="{{ asset('front/images/favicon.ico') }}">
+</head>
+<body style="background-color: #f8f9fa !important;">
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
+        <div class="container-fluid">
+            <!-- LOGO -->
+            <a class="logo text-uppercase" href="">
+                <img src="{{ asset('front/images/unnamed.png') }}" alt="" class="logo-light"
+                     style="display: inline-block !important" height="55"/>
+                <img src="{{ asset('front/images/unnamed.png') }}" alt="" class="logo-dark"
+                     style="display: none !important" height="55"/>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="mdi mdi-menu"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
+                    <li class="nav-item active">
+                        <a href="{{ path('user_homepage') }}" class="nav-link" style="font-weight: bold !important;">Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('clubParent') }}" class="nav-link"
+                           style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">Club</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('avisF') }}" class="nav-link"
+                           style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">Avis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('MesRec') }}" class="nav-link"
+                           style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">Réclamations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('enfant') }}" class="nav-link"
+                           style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">Enfant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('garde') }}" class="nav-link"
+                           style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">Garde</a>
+                    </li>
+                    <li class="nav-item ">
+                        <div class="dropdown555">
+                            <button class=" nav-link dropbtn"
+                                    style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">
+                                Reglement
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content5555">
+                                <a href="{{ path('pricing') }}" style="color: black !important;">
+                                    <span> <i
+                                                class="fab fa-dropbox"></i> </span>| Nos plans</a>
+                                <a href="{{ path('attachment') }}" style="color: black !important;"><span> <i class="fas fa-copy"></i> </span>|
+                                    Attachements</a>
+
+                                <a href="#" style="color: black !important;"><span> <i
+                                                class="fas fa-file-invoice-dollar"></i> </span>| Mes factures</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('event') }}" class="nav-link"style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">Evenement</a>
+                    </li>
+                    <li class="nav-item">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <a href="{{ path('fos_user_profile_show') }}" class="nav-link"
+                           style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">
+                            Profile </a>
+                    </li>
+                    <li class="nav-item">
+                        {% for role in app.user.roles %}
+                            {% if  role == "ROLE_SUPER_ADMIN" %}
+                                <a href="{{ path('admin_homepage') }}" class="nav-link"
+                                   style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">Admin
+                                    Dashboard</a>
+                            {% elseif role =="ROLE_MAITRESSE" %}
+                                <a href="{{ path('Maitresse_homepage') }}" class="nav-link"
+                                   style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">Maitresse
+                                    Dashboard</a>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('fos_user_security_logout') }}" class="nav-link"
+                           style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;">
+                            {{ 'layout.logout'| trans({}, 'FOSUserBundle') }}
+                        </a>
+                        {% endif %}
+                    </li>
+                    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;"
+                               href="{{ path('fos_user_security_login') }}"><span> <i
+                                            class="dripicons-enter"></i> </span>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                            </a></li>
+                    {% endif %}
+                    <li class="nav-item">
+                        {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <a class="nav-link"
+                               style="font-family:Calibri,cursive ;font-weight: bold;color: #325d79 !important;"
+                               href="{{ path('fos_user_registration_register') }}"> <span><i
+                                            class="dripicons-article"></i> </span> Créer Compte</a>
+
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('front/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('front/js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('front/js/scrollspy.min.js') }}"></script>
+
+    <!-- Magnific Popup -->
+    <script src="{{ asset('front/js/jquery.magnific-popup.min.js') }}"></script>
+
+    <!-- counter js -->
+    <script src="{{ asset('front/js/counter.int.js') }}"></script>
+
+    <!-- custom js -->
+    <script src="{{ asset('front/js/app.js') }}"></script>
+{% endblock %}
+</body>
+</html>

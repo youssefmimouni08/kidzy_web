@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Kidzy | Admin Dashboard{% endblock %}</title>
+    {% block stylesheets %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <!--Morris Chart-->
+        <link rel="stylesheet" href="{{ asset('back/assets/libs/morris-js/morris.css') }}"/>
+
+        <!-- App css -->
+        <link href="{{ asset('back/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('back/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('back/assets/css/app.min.css') }}" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{{ asset('back/assets/images/favicon.ico') }}">
+
+</head>
+<body class="left-side-menu-dark">
+{# Call NotificationsBundles's assets
+{{ notifications_assets() }}
+<script>
+    /**
+     * After calling notifications_assets() "pusher" is now available
+     * and you can use it this way
+     */
+
+        // select the channel you want to listen to
+    var channel = pusher.subscribe("notifications");// notifications channel
+    channel.bind("my-event", function(data) {
+        console.log('from notifications channel', data);
+    });
+
+    var channel = pusher.subscribe("messages");// messages channel
+    channel.bind("my-event", function(data) {
+        console.log('from messages channel', data);
+    });
+</script>#}
+
+<div id="preloader">
+    <div id="status">
+        <div class="spinner">Loading...</div>
+    </div>
+</div>
+<div id="wrapper">
+    {% block topbar %}
+        <div class="navbar-custom">
+            <ul class="list-unstyled topnav-menu float-right mb-0">
+
+                <li class="d-none d-sm-block">
+                    <form class="app-search">
+                        <div class="app-search-box">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <button class="btn" type="submit">
+                                        <i class="fe-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                {{ render(controller('UserBundle\\Controller\\DefaultController::notificationAction' )) }}
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#"
+                       role="button" aria-haspopup="false" aria-expanded="false">
+                        <img src="https://s3-ap-southeast-2.amazonaws.com/ehq-production-australia/307e5db88017e1485be238a3c00c760a0596cb59/team_members/images/000/001/701/original/male3-512.png?1461732668"
+                             class="rounded-circle img-thumbnail avatar-lg">
+                        <span class="pro-user-name ml-1">
+                                {{ app.user.nom }} <i class="mdi mdi-chevron-down"></i>
+                            </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome !</h6>
+                        </div>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-user"></i>
+                            <span>My Account</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-settings"></i>
+                            <span>Settings</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="{{ path('user_homepage') }}" class="dropdown-item notify-item">
+                            <i class="dripicons-home"></i>
+                            <span>Acceuil</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- item-->
+                        <a href="{{ path('fos_user_registration_register') }}" class="dropdown-item notify-item">
+                            <span><i class="fe-log-out"></i> </span>
+                            {{ 'layout.logout'| trans({}, 'FOSUserBundle') }}
+                        </a>
+                        </a>
+
+                    </div>
+                </li>
+
+                <li class="dropdown notification-list">
+                    <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect">
+                        <i class="fe-settings noti-icon"></i>
+                    </a>
+                </li>
+
+
+            </ul>
+
+            <!-- LOGO -->
+            <div class="logo-box" style="width: 260px!important;">
+                <img src="{{ asset('front/images/unnamed.png') }}" alt="" class="logo-light"
+                     style="display: inline-block ;padding-left: 97px;padding-top: 5px!important " height="55"/>
+            </div>
+
+            <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                <li>
+                    <button class="button-menu-mobile disable-btn waves-effect">
+                        <i class="fe-menu"></i>
+                    </button>
+                </li>
+
+                <li>
+                    <h4 class="page-title-main">Dashboard</h4>
+                </li>
+
+            </ul>
+        </div>
+    {% endblock %}
+
+    {% block sidebar %}
+        <div class="left-side-menu" style="width: 260px!important;">
+
+            <div class="slimscroll-menu">
+
+                <!-- User box -->
+                <div class="user-box text-center">
+                    <img src="https://s3-ap-southeast-2.amazonaws.com/ehq-production-australia/307e5db88017e1485be238a3c00c760a0596cb59/team_members/images/000/001/701/original/male3-512.png?1461732668"
+                         class="rounded-circle img-thumbnail avatar-lg">
+                    <div class="dropdown">
+                        <a href="#" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
+                           data-toggle="dropdown">{{ app.user.prenom }} {{ app.user.nom }}</a>
+                    </div>
+                    <p class="text-muted">{% for role in app.user.roles %}
+                            {% if  role == "ROLE_SUPER_ADMIN" %}
+                                Super Admin
+                                </a>
+                            {% elseif role == "ROLE_MAITRESSE" %}
+                                Bonjour Maitresse
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <!--- Sidemenu -->
+                {% block sidemenu %}
+                    <div id="sidebar-menu">
+
+                        <ul class="metismenu" id="side-menu">
+
+                            <li class="menu-title">Navigation</li>
+
+                            <li>
+                                <a href="{{ path('club_charts') }}">
+                                    <i class="mdi mdi-view-dashboard"></i>
+
+                                    <span> Dashboard </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('enfant_index') }}">
+                                    <i class="mdi mdi-human-child"></i>
+                                    <span> Gestion Des Enfants </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ path('garde_index') }}">
+                                    <i class="mdi mdi-home"></i>
+                                    <span> Gestion Du Garderie </span>
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="{{ path('frais_index') }}">
+                                    <i class="mdi mdi-currency-usd"></i>
+                                    <span> Gestion Des Frais </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ path('pack_index') }}">
+                                    <i class="mdi mdi-package-variant"></i>
+                                    <span> Gestion Des Packs </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('facture_index') }}">
+                                    <i class="mdi mdi-file-table-outline"></i>
+                                    <span> Gestion Des Factures </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('classe_index') }}">
+                                    <i class="mdi mdi-math-compass"></i>
+                                    <span> Gestion Des Classes </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('reclamations_index') }}">
+                                    <i class="mdi mdi-message-text"></i>
+                                    <span> Gestion Des Réclamations </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('avis_index') }}">
+                                    <i class="mdi mdi-telegram"></i>
+                                    <span> Gestion Des Avis </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('club') }}">
+                                    <i class="mdi mdi-palette-outline"></i>
+                                    <span> Gestion des clubs </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('event_index') }}">
+                                    <i class="mdi mdi-camera-wireless-outline"></i>
+                                    <span> Gestion Des evenements </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        2016 - 2019 &copy; Adminto theme by <a href="">Coderthemes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+</div>
+{% block javascripts %}
+    <!-- Vendor js -->
+    <script src="{{ asset('back/assets/js/vendor.min.js') }}"></script>
+
+    <!-- knob plugin -->
+    <script src="{{ asset('back/assets/libs/jquery-knob/jquery.knob.min.js') }}"></script>
+
+    <!--Morris Chart-->
+    <script src="{{ asset('back/assets/libs/morris-js/morris.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/raphael/raphael.min.js') }}"></script>
+
+    <!-- Dashboard init js-->
+    <script src="{{ asset('back/assets/js/pages/dashboard.init.js') }}"></script>
+
+    <script src="{{ asset('back/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/switchery/switchery.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/multiselect/jquery.multi-select.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/jquery-quicksearch/jquery.quicksearch.min.js') }}"></script>
+
+    <script src="{{ asset('back/assets/libs/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+    <script src="{{ asset('back/assets/js/pages/form-advanced.init.js') }}"></script>
+
+    <!-- App js -->
+    <script src="{{ asset('back/assets/js/app.min.js') }}"></script>
+
+{% endblock %}
+</body>
+</html>

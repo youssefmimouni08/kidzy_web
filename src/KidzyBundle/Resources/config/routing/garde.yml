@@ -1,0 +1,51 @@
+garde_index:
+    path:     admin/
+    defaults: { _controller: "KidzyBundle:Garde:index" }
+    methods:  GET
+
+garde_show:
+    path:     admin/{idGarde}/show
+    defaults: { _controller: "KidzyBundle:Garde:show" }
+    methods:  GET
+
+garde_new:
+    path:     admin/new
+    defaults: { _controller: "KidzyBundle:Garde:new" }
+    methods:  [GET, POST]
+
+garde_edit:
+    path:     admin/{idGarde}/edit
+    defaults: { _controller: "KidzyBundle:Garde:edit" }
+    methods:  [GET, POST]
+
+garde_delete:
+    path:     admin/{idGarde}/delete
+    defaults: { _controller: "KidzyBundle:Garde:delete" }
+    methods:  DELETE
+
+garde_list:
+    path:     admin/{idGarde}/list
+    defaults: { _controller: "KidzyBundle:Garde:list" }
+    methods:  GET
+
+garde:
+    path:     /garde
+    defaults: { _controller: "KidzyBundle:Garde:garde" }
+
+garde_detailEnfant:
+    path:     admin/{idGarde}/{idEnfant}/detail
+    defaults: { _controller: "KidzyBundle:Garde:detailEnfant" }
+
+garde_newEnfant:
+    path:     admin/newEnfant
+    defaults: { _controller: "KidzyBundle:Garde:newEnfant" }
+    methods:  [GET, POST]
+charts:
+    path:     /admin/chart
+    defaults: { _controller: "KidzyBundle:Garde:charts" }
+    methods:  GET
+print_garde:
+    path:     /print
+    defaults: { _controller: "KidzyBundle:Garde:print" }
+
+

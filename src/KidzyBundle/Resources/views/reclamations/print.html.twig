@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<body style="font-family:Arial Unicode MS, Helvetica , Sans-Serif;">
+<table style="table-layout: fixed; width: 100%;">
+    <tbody>
+    <tr>
+        <td class="">
+            <div>
+                <img src="{{ asset('front/images/logo-dark.png') }}"  class="logo-light" height="70" alt="Company Logo">
+
+            </div>
+        </td>
+        <td width="15%">
+
+        </td>
+        <td>
+            <table class="tbl-padded">
+                <caption style="text-transform: uppercase; text-align: right; font-size: 30pt;">
+                    <strong>
+                       Reclamation
+                    </strong>
+                </caption>
+                <tbody>
+                <tr>
+                    <td style="padding:5px;">
+                        <strong>Date </strong>
+                    </td>
+                    <td style="padding:5px;">
+                        {{reclamation.dateRec |date }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="padding-top: 1cm; padding-bottom: 1cm;">
+    <table style="table-layout: fixed; width: 100%;">
+        <tbody>
+        <tr>
+            <td>
+                <div style="padding-bottom: 10px;">
+                    <strong style="text-transform: uppercase;">De</strong>
+                </div>
+                <div>
+                    Mme/Mr<br>
+                    {{reclamation.id}}
+                </div>
+            </td>
+            <td width="15%">
+
+            </td>
+            <td>
+                <div style="padding-bottom: 10px;">
+                    <strong style="text-transform: uppercase;">A la maitresse </strong>
+                </div>
+                <div>
+                    {{reclamation.idM}}
+
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <table style="table-layout: fixed; width: 100%;">
+        <thead>
+        <tr>
+
+            <th align="center" style="border-top: 1px solid #eee; padding: 9px;">
+                Description
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+            <td align="center" style="border-top: 1px solid #eee; padding: 5px;">
+                {{reclamation.descriptionRec}}
+            </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+</body>
+
+</html>

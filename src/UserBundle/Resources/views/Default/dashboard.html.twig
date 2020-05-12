@@ -1,0 +1,72 @@
+{% extends 'baseadmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+{% block content %}
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+<!-- Start Content-->
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card-box">
+                <div class="dropdown float-right">
+
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                    </div>
+                </div>
+
+                <h4 class="header-title mt-0 mb-4">Total Enfants</h4>
+
+                <div class="widget-chart-1">
+                    <div class="widget-chart-box-1 float-left" dir="ltr">
+                        <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
+                               data-bgColor="#F9B9B9" value="58"
+                               data-skin="tron" data-angleOffset="180" data-readOnly=true
+                               data-thickness=".15"/>
+                    </div>
+
+                    <div class="widget-detail-1 text-right">
+                        <h2 class="font-weight-normal pt-2 mb-1"> 256 </h2>
+
+
+                        <p class="text-muted mb-1"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end col -->
+    </div>
+
+
+</div>
+    </div> <!-- content -->
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('back/assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('back/assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}

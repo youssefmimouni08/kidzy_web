@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+{% block content %}
+    <section class="bg-home bg-gradient" id="home" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3); padding-bottom: 10px !important">
+    </section>
+    <section class="features" id="features" style="padding-bottom: 300px !important;" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <ul class="nav nav-pills nav-justified features-tab mb-5" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-customize-tab" data-toggle="pill" href="#pills-customize" role="tab" aria-controls="pills-customize" aria-selected="true">
+                                <div class="clearfix">
+                                    <div class="features-icon float-right">
+                                        <i class="pe-7s-add-user h1"></i>
+                                    </div>
+                                    <div class="d-none d-lg-block mr-4">
+                                        <h5>Ajouter votre enfant</h5>
+                                        <p>Entrer les details de l'enfant !</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="custom-modal-text text-left">
+
+                        <form action="{{ path('enfant_add')}}"  method="POST" enctype="multipart/form-data">
+
+                            <div class="form-group">
+                                <div class="col-sm-7">
+                                    <p class="text-muted font-13"><strong>Image :</strong> </p>
+
+                                    <input type ="file" class="form-control"name="imageFile">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-7">
+                                    <p class="text-muted font-13"><strong>Nom :</strong> </p>
+
+                                    <input type ="text" class="form-control"name="nomEnfant">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-7">
+                                    <p class="text-muted font-13"><strong>Prenom :</strong> </p>
+
+                                    <input type ="text" class="form-control"name="prenomEnfant"  >
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-7">
+                                    <p class="text-muted font-13"><strong>Classe :</strong> </p>
+
+                                    <select class="form-control" id="idClasse" name="idClasse">
+
+                                        {% for classes in classe %}
+
+
+                                            <option  value="{{ classes.idClasse }}">{{ classes.libelleCla}}</option>
+                                        {% endfor %}
+
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-7">
+
+                                    <p class="text-muted font-13"><strong>Date de naissnace :</strong> </p>
+
+                                    <input type ="text" class="form-control"name="datenEnfant">
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <input type="submit" class="btn btn-danger waves-effect waves-light" value="Enregistrer">
+                                <a class="btn btn-light waves-effect waves-light mr-1" href="{{ path('enfant') }}">
+                                    Annuler
+                                </a>
+
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end tab-content -->
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container-fluid -->
+    </section>
+{% endblock %}
+
+

@@ -1,0 +1,33 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class="account-pages mt-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="text-center">
+                    <a href="index.html">
+                        <span><img src="assets/images/logo-dark.png" alt="" height="22"></span>
+                    </a>
+                    <p class="text-muted mt-2 mb-4"></p>
+                </div>
+                <div class="card alert alert-success">
+                    <div class="card-body p-4">
+                        <div class="" role="alert">
+                            <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                            <div class="alert-text">
+                                <p>{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}</p>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+
+        {% endblock %}

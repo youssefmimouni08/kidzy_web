@@ -1,0 +1,95 @@
+{% extends 'baseadmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('back/assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+{% block content %}
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h1>Liste des enfants</h1>
+
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th ></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+                                {% for c in liste %}
+                                    <tr>
+
+                                        <th>{{ c.nomEnfant }}
+                                            {{ c.prenomEnfant }}</th>
+
+                                        <td>
+                                            <a align="center" class="btn btn-primary waves-effect waves-light mr-1" href ="{{ path('inscription_show', { 'idInscrit': c.idInscrit,'idEnfant':c.idEnfant,'idClub':c.idClub}) }}">
+                                                Details
+
+                                        <td>  <a align="center" class="btn btn-primary waves-effect waves-light mr-1" href="{{ path('inscription_edit', { 'idInscrit': c.idInscrit,'idEnfant':c.idEnfant,'idClub':c.idClub}) }}">
+                                                Modifier  </a></td>
+
+
+                                    </tr>
+
+                                {% endfor %}
+
+
+
+                                </tbody>
+                            </table>
+
+
+
+
+                            <ul>
+                                <ul align="left">
+                                    <li>
+                                    <h5>   <a align="center" href="{{ path('inscription_new', {'idClub':idClub}) }}">
+                                        Ajouter un enfant</a>
+                                </h5> </li></ul>
+                                <ul align="right">
+                                    <a align="center" class="btn btn-danger waves-effect width-md waves-light"  href ="{{ path('club') }}">
+                                        Retour </a>                 </ul>  </ul>
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('back/assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('back/assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}
+

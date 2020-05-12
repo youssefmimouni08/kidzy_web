@@ -1,0 +1,94 @@
+{% extends 'baseadmin.html.twig' %}
+{% form_theme edit_form 'form/form_errors.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet"/>
+
+    <link href="{{ asset('back/assets/libs/multiselect/multi-select.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <h4 class="header-title mt-0 mb-3">Modifier Pack</h4>
+                        {{ form_start(edit_form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                        <div class="form-group row">
+                            {{ form_label(edit_form.nomPack ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                            <div class="col-sm-7">
+                                {{ form_widget(edit_form.nomPack , {'attr': {'class': 'form-control' , 'placeholder': 'Titre'}}) }}
+                            </div>
+                            {{ form_errors(edit_form.nomPack) }}
+                        </div>
+                        <div class="form-group row" hidden>
+                            <div class="col-sm-7">
+                                {{ form_widget(edit_form.prixPack , {'attr': {'class': 'form-control' , 'placeholder': 'Prix'}}) }}
+                            </div>
+                            {{ form_errors(edit_form.prixPack) }}
+                        </div>
+                        <div class="form-group row">
+                            {{ form_label(edit_form.descriptionPack ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                            <div class="col-sm-7">
+                                {{ form_widget(edit_form.descriptionPack , {'attr': {'class': 'form-control' , 'placeholder': 'Prix' }}) }}
+                            </div>
+                            {{ form_errors(edit_form.descriptionPack) }}
+                        </div>
+                        <div class="form-group row">
+                            {{ form_label(edit_form.frais ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(edit_form.frais , {'attr': {'multiple':'multiple' , 'class':'multi-select' , 'name':'my_multi_select1[]' , 'data-plugin':'multiselect'}}) }}
+                            </div>
+                            {{ form_errors(edit_form.frais) }}
+                        </div>
+                        <div class="offset-xl-3">
+                            <h3 class="text-right">Total : <span id="tot"> {{edit_form.vars.data.prixPack}} </span> DT</h3>
+                        </div>
+                        <div class="button-list d-flex justify-content-start">
+                            {{ form_widget(edit_form) }}
+                            <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Modifier">
+                            {{ form_end(edit_form) }}
+                            {{ form_start(delete_form) }}
+                            <input type="submit" class="btn btn-danger waves-effect width-md waves-light" value="Supprimer">
+                            {{ form_end(delete_form) }}
+                            <a class="btn btn-secondary waves-effect waves-light" href="{{ path('pack_index') }}"> Retour </a>
+                        </div>
+
+
+                    </div> <!-- end card-box -->
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+        </div> <!-- container-fluid -->
+
+    </div> <!-- content -->
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $('.ms-selectable > ul > li').click(function() {
+            old = document.getElementById('tot').innerText;
+            add = this.innerText.match(/\d+/g).map(Number);
+            document.getElementById('tot').innerText = Number(old) + Number(add);
+            document.getElementById('kidzybundle_pack_prixPack').value = Number(old) + Number(add);
+
+        });
+
+        $('.ms-selection > ul > li').click(function() {
+            old = document.getElementById('tot').innerText;
+            add = this.innerText.match(/\d+/g).map(Number);
+            document.getElementById('tot').innerText = Number(old) - Number(add);
+            document.getElementById('kidzybundle_pack_prixPack').value = Number(old) - Number(add);
+        })
+    </script>
+{% endblock %}

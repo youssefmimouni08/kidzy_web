@@ -1,0 +1,56 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Modifier Description</h4>
+
+                            {{ form_start(edit_form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                            <div class="form-group row">
+                                {{ form_label(edit_form.descriptionInscrit ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                                <div class="col-sm-7">
+                                    {{ form_widget(edit_form.descriptionInscrit , {'attr': {'class': 'form-control' , 'placeholder': 'Description'}}) }}
+                                </div>
+                                {{ form_errors(edit_form.descriptionInscrit) }}
+                            </div>
+
+                            <div class="button-list d-flex justify-content-start">
+                                {% for message in app.flashes('info') %}
+
+                                    <div class="alert alert-success">
+                                        {{ message }}
+
+                                    </div>
+                                {% endfor %}
+                            {{ form_widget(edit_form) }}
+                            <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Modifier">
+                                {{ form_end(edit_form) }}
+                                <a class="btn btn-secondary waves-effect waves-light" href="{{ path('inscription_enfantAdmin', {'idClub':idClub}) }}">
+                                    Annuler
+                                </a>
+
+                            </div>
+
+
+
+
+
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

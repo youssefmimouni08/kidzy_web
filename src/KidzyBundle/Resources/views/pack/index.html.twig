@@ -1,0 +1,153 @@
+{% extends 'baseadmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+
+    </style>
+
+    <script>
+
+        {% set data = {} %}
+        {% for pack in packs  %}
+        {% set data = data|merge([{
+            'pack': pack.nomPack,
+            'value': pack.factures | length,
+        }]) %}
+        {% endfor %}
+
+        {##}
+        am4core.ready(function () {
+
+// Themes begin
+            am4core.useTheme(am4themes_animated);
+// Themes end
+
+            var chart = am4core.create("chartdiv", am4charts.PieChart);
+            chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+            chart.data = {{ data|json_encode|raw }};
+            chart.radius = am4core.percent(70);
+            chart.innerRadius = am4core.percent(40);
+            chart.startAngle = 180;
+            chart.endAngle = 360;
+
+            var series = chart.series.push(new am4charts.PieSeries());
+            series.dataFields.value = "value";
+            series.dataFields.category = "pack";
+
+            series.slices.template.cornerRadius = 10;
+            series.slices.template.innerCornerRadius = 7;
+            series.slices.template.draggable = true;
+            series.slices.template.inert = true;
+            series.alignLabels = false;
+
+            series.hiddenState.properties.startAngle = 90;
+            series.hiddenState.properties.endAngle = 90;
+
+            chart.legend = new am4charts.Legend();
+
+        }); // end am4core.ready()
+    </script>
+
+{% endblock %}
+{% block content %}
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h1>Packs list</h1>
+
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom Pack</th>
+                                    <th>Prix Pack</th>
+                                    <th>Description Pack</th>
+                                    <th>Frais Pack</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for pack in packs %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('pack_show', { 'idPack': pack.idPack }) }}">{{ pack.idPack }}</a>
+                                        </td>
+                                        <td>{{ pack.nomPack }}</td>
+                                        <td>{{ pack.prixPack }}</td>
+                                        <td>{{ pack.descriptionPack }}</td>
+                                        <td>
+                                            <ul>
+                                                {% for frai in pack.frais %}
+                                                    <li>
+                                                        <a href="{{ path('frais_show', { 'idFrais': frai.idFrais }) }}">{{ frai.titre }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('pack_show', { 'idPack': pack.idPack }) }}">show</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('pack_edit', { 'idPack': pack.idPack }) }}">edit</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <ul class=" mt-0 mb-3">
+                                <li>
+                                    <a href="{{ path('pack_new') }}">Ajouter un nouveau Pack</a>
+                                </li>
+                            </ul>
+                            <h4 class="header-title mt-0 mb-3">Statistiques sur le nombre d'achat par Pack </h4>
+                            <div id="chartdiv"></div>
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('back/assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('back/assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}

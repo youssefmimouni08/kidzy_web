@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <section class="section bg-gradient" id="home"
+             style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3); padding-bottom: 10px !important">
+    </section>
+    <section class="section bg-light" id="pricing">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title text-center mb-4">
+                        <h6 class="text-primary small-title"></h6>
+                        <h4>La liste des evenements</h4>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+            {% for event in event %}
+
+
+                <div class="col-lg-4">
+                    <form action="{{ path('event', { 'id': event.idEvent }) }}">
+
+
+                        <div class="pricing-plans bg-white text-center p-4 mt-4">
+                            <div class="dropdown float-right">
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                                </div>
+                            </div>
+
+
+                            <div>
+
+                                {% if event.imageEvent %}
+                                    <img src="{{ asset('images/enfants/riihem.jpg') }}"  alt="profile-image">
+                                {% endif %}
+
+
+                                <div class="text-left">
+                                    <p class="text-muted font-13"><strong></strong><span class="ml-2"> </span></p>
+                                    <p class="text-muted font-13"><strong>Nom  :</strong> <span class="ml-2"> {{ event.nomEvent}}   </span></p>
+
+                                    <p class="text-muted font-13"><strong>Date:</strong><span class="ml-2">{{ event.dateEvent |date}} </span></p>
+
+                                    <p class="text-muted font-13"><strong>Prix :</strong> <span class="ml-2"> {{ event.prixEvent }}</span></p>
+
+                                    <p class="text-muted font-13"><strong>description :</strong> <span class="ml-2"> {{ event.descrEvent}}</span></p>
+
+                                    <p class="text-muted font-13"><strong>Type :</strong> <span class="ml-2"> {{ event.typeEvent }}</span></p>
+
+                                    <p class="text-muted font-13"><strong>Lieu :</strong> <span class="ml-2"> {{ event.lieuEvent}}</span></p>
+                                </div>
+                                <div class="title text-center mb-4">
+
+                                    <h5>      </h5>
+
+                                </div>
+                                <div class="title text-center mb-4">
+
+
+                                    <a align ="right"class="btn btn-secondary waves-effect waves-light" href="{{ path('inscriptionevent_newFront')}}">
+                                        participer
+                                    </a>
+                                </div>
+                                <!-- end row -->
+
+
+
+                            </div>
+
+                        </div>
+                    </form>
+                </div> <!-- end col -->
+            {% endfor %}
+
+
+
+
+
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div> <!-- end col -->
+
+
+            </div>
+        </div>
+        <!-- end container-fluid -->
+    </section>
+{% endblock %}

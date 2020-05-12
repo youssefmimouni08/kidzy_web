@@ -1,0 +1,50 @@
+{% extends 'baseadmin.html.twig' %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Details Frais</h4>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">ID : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ frai.idFrais }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Titre : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ frai.titre }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Prix : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ frai.prix }} DT</a></h3>
+                                </div>
+                            </div>
+                            <div class="button-list d-flex justify-content-start">
+                                <a  href="{{ path('frais_index') }}" class="btn btn-primary waves-effect width-md waves-light">Retour</a>
+                                <a  href="{{ path('frais_edit', { 'idFrais': frai.idFrais }) }}" class="btn btn-secondary waves-effect width-md">Modifier</a>
+                                {{ form_start(delete_form) }}
+                                <input type="submit" class="btn btn-danger waves-effect width-md waves-light" value="Supprimer">
+                                {{ form_end(delete_form) }}
+                            </div>
+
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

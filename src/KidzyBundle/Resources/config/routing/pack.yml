@@ -1,0 +1,55 @@
+pack_index:
+    path:     admin/
+    defaults: { _controller: "KidzyBundle:Pack:index" }
+    methods:  GET
+facture_index:
+    path:     admin/facture/
+    defaults: { _controller: "KidzyBundle:Pack:facture" }
+    methods:  GET
+
+pack_show:
+    path:     admin/{idPack}/show
+    defaults: { _controller: "KidzyBundle:Pack:show" }
+    methods:  GET
+
+pack_new:
+    path:     admin/new
+    defaults: { _controller: "KidzyBundle:Pack:new" }
+    methods:  [GET, POST]
+
+pack_edit:
+    path:     admin/{idPack}/edit
+    defaults: { _controller: "KidzyBundle:Pack:edit" }
+    methods:  [GET, POST]
+
+pack_delete:
+    path:     admin/{idPack}/delete
+    defaults: { _controller: "KidzyBundle:Pack:delete" }
+    methods:  DELETE
+pricing:
+    path:     /pricing
+    defaults: { _controller: "KidzyBundle:Pack:pricing" }
+buy:
+    path:     /{idPack}/{amount}/{due}/buy
+    defaults: { _controller: "KidzyBundle:Pack:buy" }
+success_payment:
+    path:     /success/{idPack}/{idEnfant}/{prix}/{end}/{session_id}
+    defaults: { _controller: "KidzyBundle:Pack:success" }
+print:
+    path:     /print/{idPack}/{idEnfant}/{idParent}/{idFacture}/{prix}/{end}
+    defaults: { _controller: "KidzyBundle:Pack:print" }
+count:
+    path:     /count
+    defaults: { _controller: "KidzyBundle:Pack:count" }
+status:
+    path:     /status
+    defaults: { _controller: "KidzyBundle:Pack:status" }
+attachment:
+    path:     /attachements
+    defaults: { _controller: "KidzyBundle:Pack:attach" }
+fileuploadhandler:
+    path:     /attachement/upload/{idEnfant}
+    defaults: { _controller: "KidzyBundle:Pack:fileUploadHandler" }
+deleteFileResource:
+    path:     /attachement/remove
+    defaults: { _controller: "KidzyBundle:Pack:deleteResource" }

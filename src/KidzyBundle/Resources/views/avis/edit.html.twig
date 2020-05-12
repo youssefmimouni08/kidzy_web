@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+<section class="section bg-gradient" id="home" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3); padding-bottom: 10px !important">
+</section>
+<section class="section bg-light" id="pricing" style="padding-bottom: 300px !important">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="title text-center mb-4">
+                    <h6 class="text-primary small-title"></h6>
+                    <h4>Modifier Avis</h4>
+                </div>
+            </div>
+        </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <h4 class="header-title mt-0 mb-3"></h4>
+
+                        {{ form_start(edit_form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                        <div class="form-group row">
+                            {{ form_label(edit_form.descriptionAvis ,null , {'label_attr': {'class': 'col-sm-4 col-form-label'}}) }}
+                            <div class="col-sm-7">
+                                {{ form_widget(edit_form.descriptionAvis, {'attr': {'class': 'form-control' , 'placeholder': 'Titre'}}) }}
+                            </div>
+                            {{ form_errors(edit_form.descriptionAvis) }}
+                        </div>
+
+                        <div class="button-list d-flex justify-content-start">
+                            {{ form_widget(edit_form) }}
+                            <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Confirmer">
+                            {{ form_end(edit_form) }}
+
+                        </div>
+
+
+                    </div> <!-- end card-box -->
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+        </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+        </div>
+    </section>
+{% endblock %}

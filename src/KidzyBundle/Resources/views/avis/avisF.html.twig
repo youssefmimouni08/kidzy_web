@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <section class="section bg-gradient" id="home" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3); padding-bottom: 10px !important">
+    </section>
+    <section class="section bg-light" id="pricing" style="padding-bottom: 300px !important">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title text-center mb-4">
+                        <h6 class="text-primary small-title"></h6>
+                        <h4>Les Avis </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <a href="{{ path('avis_new') }}" class="btn btn-success btn-md waves-effect waves-light mb-3" data-animation="fadein" data-plugin="custommodal"
+                       data-overlaySpeed="200" data-overlayColor="#36404a"><i class="mdi mdi-plus-circle-outline"></i> Ajouter avis </a>
+                    <a href="{{ path('Mesavis') }}" class="btn btn-success btn-md waves-effect waves-light mb-3" data-animation="fadein" data-plugin="custommodal"
+                       data-overlaySpeed="200" data-overlayColor="#e83e8c"><i class="pt-4"></i> Consulter mes avis </a>
+                </div>
+            </div>
+            <div class="row">
+
+                {% for enfant in avis %}
+                    <div class="col-md-6 col-xl-3">
+
+                        <div class="card">
+
+                            <div class="card-body">
+                                <h4 class="card-title">Nom</h4>
+                                <p class="card-text">{{ enfant.id}}</p>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Description</h4>
+                                <p class="card-text">{{ enfant.descriptionAvis}}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{ enfant.dateAvis |date}}</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+                <!-- end container-fluid -->
+            </div>
+            <div class="text-center" style="">{{ knp_pagination_render(avis) }} </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Success{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('success/style.css') }}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('front/css/materialdesignicons.min.css') }}"/>
+    <link href="{{ asset('back/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
+    <!--pe-7 Icon -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('front/css/pe-icon-7-stroke.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="shortcut icon" href="{{ asset('front/images/favicon.ico') }}">
+</head>
+<body style="background: #F6B8C3; !important;">
+<div class="bg" style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3);">
+
+    <div class="card">
+
+        <span class="card__success"><i class="mdi mdi-check text-light"></i></span>
+
+        <h1 class="card__msg">Payment Complete</h1>
+        <h2 class="card__submsg">Thank you for your transfer</h2>
+
+        <div class="card__body">
+
+            <img src="https://s3-ap-southeast-2.amazonaws.com/ehq-production-australia/307e5db88017e1485be238a3c00c760a0596cb59/team_members/images/000/001/701/original/male3-512.png?1461732668"
+                 class="card__avatar">
+            <div class="card__recipient-info">
+                <p class="card__recipient">{{ user.nom | upper }} {{ user.prenom |title }}</p>
+                <p class="card__email">{{ user.email }}</p>
+            </div>
+
+            <h1 class="card__price">{{ prix }}<span>DT</span></h1>
+
+            <p class="card__method">Details Achat</p>
+            <div class="card__payment">
+                <div class="card__credit-card">
+                    <i class="pe-7s-note2 h1"></i>
+                </div>
+                <div class="card__card-details">
+                    <p class="card__card-type">{{ pack.nomPack }}</p>
+                    {% for frai in pack.frais %}
+                        <p class="card__card-number">{{ frai.titre }}</p>
+                    {% endfor %}
+                    <p class="card__card-type">Enfant :</p>
+                    <p class="card__card-number">{{ enfant.nomEnfant }} {{ enfant.prenomEnfant }}</p>
+                </div>
+            </div>
+
+        </div>
+        <a href="{{ path('print' , { 'idPack': pack.idPack , 'idEnfant': enfant.idEnfant , 'idParent': user.id , 'idFacture': facture.idFacture,'prix':prix,'end':due } ) }}" class="btn btn-dark ">Imprimer</a>
+        <a href="{{ path('attachment') }}"  class="btn btn-primary ">Retour</a>
+    </div>
+
+</div>
+</body>

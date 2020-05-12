@@ -1,0 +1,53 @@
+{% extends 'baseadmin.html.twig' %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Details Club</h4>
+
+
+                              <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Enfant : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ enfant.prenomEnfant }} {{ enfant.nomEnfant }}</a></h3>
+                                </div> </div>
+                                  <div class="form-group row">
+                                      <label class="col-sm-2  col-form-label" for="simpleinput">Club: </label>
+                                      <div class="col-sm-7">
+                                          <h3 class="mt-0"><a class="text-dark">{{ club.nomClub }}</a></h3>
+                                      </div></div>
+                        <div class="form-group row">
+                            <label class="col-sm-2  col-form-label" for="simpleinput">Date d'inscription: </label>
+                            <div class="col-sm-7">
+                                <h3 class="mt-0"><a class="text-dark">{{ inscription.dateInscrit |date}}</a></h3>
+                            </div></div>
+                        <div class="form-group row">
+                            <label class="col-sm-2  col-form-label" for="simpleinput">Description: </label>
+                            <div class="col-sm-7">
+                                <h3 class="mt-0"><a class="text-dark">{{ inscription.descriptionInscrit }}</a></h3>
+                            </div></div>
+
+                            <div class="button-list d-flex justify-content-start">
+                                <a class="btn btn-secondary waves-effect waves-light"  href="{{ path('inscription_enfantAdmin', { 'idClub': club.idClub }) }}"> Retour </a>
+
+                            {{ form_start(delete_form) }}
+                            <input type="submit" class="btn btn-danger waves-effect width-md waves-light" value="Supprimer">
+                            {{ form_end(delete_form) }}
+                            </div>
+                        </div>
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}

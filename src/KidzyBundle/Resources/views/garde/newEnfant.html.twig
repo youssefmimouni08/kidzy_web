@@ -1,0 +1,57 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Ajout d'un enfant</h4>
+
+                            <div class="form-group row">
+                                <label class ="col-sm-4 col-form-label" for="street"> Choisir un enfant </label><span class="text-danger"> </span>
+
+                                <div class="col-sm-7">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class ="col-sm-4 col-form-label" for="street">Choisir une garderie </label><span class="text-danger"> </span>
+                                <div class="col-sm-7">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <div class="offset-sm-4 col-sm-8">
+
+                                    {% for message in app.flashes('info') %}
+
+                                        <div class="alert alert-success">
+                                            {{ message }}
+
+                                        </div>
+                                    {% endfor %}
+                                    <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Confimer">
+                                    <a class="btn btn-secondary waves-effect waves-light" href="{{ path('garde_index') }}">
+                                        Annuler
+                                    </a>
+                                </div>
+                            </div>
+                        </div><!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+
+{% endblock %}

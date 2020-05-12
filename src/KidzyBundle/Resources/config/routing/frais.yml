@@ -1,0 +1,24 @@
+frais_index:
+    path:     admin/
+    defaults: { _controller: "KidzyBundle:Frais:index" }
+    methods:  GET
+
+frais_show:
+    path:     admin/{idFrais}/show
+    defaults: { _controller: "KidzyBundle:Frais:show" }
+    methods:  GET
+
+frais_new:
+    path:     admin/new
+    defaults: { _controller: "KidzyBundle:Frais:new" }
+    methods:  [GET, POST]
+
+frais_edit:
+    path:     admin/{idFrais}/edit
+    defaults: { _controller: "KidzyBundle:Frais:edit" }
+    methods:  [GET, POST]
+
+frais_delete:
+    path:     admin/{idFrais}/delete
+    defaults: { _controller: "KidzyBundle:Frais:delete" }
+    methods:  DELETE

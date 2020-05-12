@@ -1,0 +1,180 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('back/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('back/assets/libs/switchery/switchery.min.css') }}" rel="stylesheet" type="text/css"/>
+
+    <link href="{{ asset('back/assets/libs/multiselect/multi-select.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('back/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}"
+          rel="stylesheet"/>
+    <link href="{{ asset('back/assets/libs/switchery/switchery.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('back/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('back/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('back/assets/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('back/assets/libs/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+
+
+    <!-- App css -->
+
+{% endblock %}
+{% block content %}
+    <section class="section bg-gradient" id="home"
+             style="background: linear-gradient(to top, #ffe6ee, #ffe2eb, #ffdee8, #ffdae4, #ffd6e1, #fed2dd, #fecfda, #fdcbd6, #fbc6d1, #fac1cd, #f8bdc8, #f6b8c3); padding-bottom: 10px !important">
+    </section>
+    <section class="section bg-light" id="pricing">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title text-center mb-4">
+                        <h6 class="text-primary small-title">Nos Tarifs</h6>
+                        <h4>Our Pricing plans</h4>
+                        <p class="text-muted"></p>
+                        <p class="text-muted"></p>
+                        <p class="text-muted">Our prices are fair and competitive. At Pebbles, we believe your child’s care and education are extremely valuable. The rates listed below are indicative of our professionally-qualified faculty, our diverse and exceptional extracurricular programs, and the quality care they receive !</p>
+                        <div id="element1" style="display: inline-block ;margin-right:10px!important">  <h5>Bill monthly   </h5></div>
+                        <div  style="display: inline-block;margin-right:10px!important" onclick="myFunction()" >
+                            <input  id="foo"   type="checkbox" data-plugin="switchery" data-color="#fb6d9d" data-secondary-color="#7266ba" data-switchery="true" style="display: none;">
+                        </div>
+                        <div id="element1" style="display: inline-block!important;">  <h6 >  Bill Yearly (save 20 %)</h6></div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+                {% set amount = 0 %}
+
+                {% set due = "now"|date("Y-m-d")   %}
+                {% set due = due|date_modify("+1 month")|date("Y-m-d") %}
+
+
+                {% for pack in packs %}
+                    <div class="col-lg-4">
+                        <form id="url" action="{{ path('buy', {'idPack': pack.idPack, 'amount': pack.prixPack,'due': due }) }}" >
+                            <div class="pricing-plans bg-white text-center p-4 mt-4">
+                                <h5 class="plan-title mt-2 mb-4">{{ pack.nomPack }}</h5>
+
+                                <div class="plan-price">
+                                    <h4  id="ss" class="mb-3 price">{{ pack.prixPack }}<sup><small>DT</small></sup></h4>
+                                    <div class="plan-duration" id="per">Par mois</div>
+                                    <h5 class="plan-duration text-muted font-18">{{ pack.descriptionPack }}</h5>
+                                </div>
+                                <div class="pricing-content p-4 text-muted">
+                                    {% for frai in frais %}
+                                        <p>{{ frai.titre }} ( {{ frai.prix }} DT   )
+                                            {% if frai in pack.frais %}
+                                                <i class="ti-check text-success"></i>
+                                            {% else %}
+                                                <i class="ti-close text-danger"></i>
+                                            {% endif %}
+                                        </p>
+                                    {% endfor %}
+                                </div>
+                                <div class="text-muted">
+                                    <h5 class="mb-3">Choisissez votre enfant : </h5>
+                                    <select class="form-control" id="enfant" name="enfant">
+                                        {% for enfant in parent.enfants %}
+                                            <option value="{{ enfant.idEnfant }}">{{ enfant.nomEnfant }} {{ enfant.prenomEnfant }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="pt-4">
+                                    <input   type="submit"  class="btn btn-custom btn-block" value="S'inscrire">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container-fluid -->
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('back/assets/js/vendor.min.js') }}"></script>
+
+    <!-- Plugins Js -->
+    <script src="{{ asset('back/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/switchery/switchery.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/multiselect/jquery.multi-select.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/jquery-quicksearch/jquery.quicksearch.min.js') }}"></script>
+
+    <script src="{{ asset('back/assets/libs/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('back/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+
+    <!-- Init js-->
+    <script src="{{ asset('back/assets/js/pages/form-advanced.init.js') }}"></script>
+    <script type="text/javascript">
+
+
+        function myFunction() {
+
+            var i =0;
+            var x = document.querySelectorAll(".price")
+            var rep = document.getElementsByTagName("form");
+            var isChecked=document.getElementById("foo").checked;
+            var total =0;
+            var end ;
+            var j;
+            if (isChecked===true)
+            {
+                var array1 = [];
+                {% for pack in packs %}
+                total = {{pack.prixPackyear}};
+                currentDate = new Date()
+                currentDate.setFullYear(currentDate.getFullYear()+1)
+                var day = currentDate.getDate()
+                var month = currentDate.getMonth() + 1
+                var year = currentDate.getFullYear()
+                end =  day + "-" + month + "-" + year
+                console.log(end)
+
+                x[i++].innerHTML=(total+'<sup><small>DT</small></sup>')
+                document.getElementById("per").innerText = "Par année"
+                var url = '{{ path('buy', {'idPack': pack.idPack, 'amount': ":id", 'due': ":date"}) }}';
+                url = url.replace(':id', total);
+                url = url.replace(':date', end);
+                array1.push(url)
+                {% endfor %}
+                console.log(array1)
+                for (j = 0; j < rep.length; j++) {
+                    rep[j].action=array1[j];
+                }
+            }
+            else {
+                var array2 = [];
+                {% for pack in packs %}
+                total = {{pack.prixPack}};
+                currentDate = new Date()
+                currentDate.setMonth(currentDate.getMonth()+1)
+                var day = currentDate.getDate()
+                var month = currentDate.getMonth() + 1
+                var year = currentDate.getFullYear()
+                end =  day + "-" + month + "-" + year
+                console.log(end)
+                x[i++].innerHTML=(total+'<sup><small>DT</small></sup>')
+                document.getElementById("per").innerText = "Par mois"
+
+                var url = '{{ path('buy', {'idPack': pack.idPack, 'amount': ":id", 'due': ":date"}) }}';
+                url = url.replace(':id', total);
+                url = url.replace(':date', end);
+                array2.push(url);
+                for (j = 0; j < rep.length; j++) {
+                    rep[j].action=array2[j];
+                }
+                {% endfor %}
+            }}
+    </script>
+{% endblock %}

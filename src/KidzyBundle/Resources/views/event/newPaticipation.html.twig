@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <section class="section bg-gradient" id="home" style="padding-bottom: 0px !important">
+    </section>
+    <section class="section bg-light" id="pricing">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title text-center mb-4">
+                        <h4> </h4>
+                        <h4 class="text-primary small-title">Veuillez confirmer votre participation. </h4>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+
+                        {{ form_start(form, {'attr': {'class': 'form-horizontal' , 'role' : 'form' , 'novalidate': 'novalidate' }}) }}
+                        <div class="form-group row">
+                            <label class ="col-sm-4 col-form-label" for="street">Enfant </label><span class="text-danger"> </span>
+
+                            <div class="col-sm-7">
+                                {{ form_widget(form.idEnfant , {'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
+                            </div>
+                            {{ form_errors(form.idEnfant) }}
+                        </div>
+                        <div class="form-group row">
+                            <label class ="col-sm-4 col-form-label" for="street">Event </label><span class="text-danger"> </span>
+                            <div class="col-sm-7">
+                                {{ form_widget(form.idEvent , {'attr': {'class': 'form-control' , 'placeholder': 'Event' }}) }}
+                            </div>
+                            {{ form_errors(form.idEvent) }}
+                        </div>
+                        <div class="form-group row">
+                            <label class ="col-sm-4 col-form-label" for="street"> Description</label><span class="text-danger"> </span>
+                            <div class="col-sm-7">
+                                {{ form_widget(form.description , {'attr': {'class': 'form-control' , 'placeholder': 'Description'}}) }}
+                            </div>
+                            {{ form_errors(form.description) }}
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="offset-sm-4 col-sm-8">
+                                {{ form_widget(form) }}
+                                {% for message in app.flashes('info') %}
+
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+
+
+                                    <input type="submit" class="btn btn-primary waves-effect waves-light mr-1" value="Confimer">
+                                <a class="btn btn-secondary waves-effect waves-light" href="{{ path('event') }}">
+                                    Annuler
+                                </a>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div><!-- end card-box -->
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+        </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+        </div>
+    </section>
+{% endblock %}

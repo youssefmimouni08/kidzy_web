@@ -1,0 +1,47 @@
+enfant_index:
+    path:     admin/
+    defaults: { _controller: "KidzyBundle:Enfant:index" }
+    methods:  GET
+
+enfant_show:
+    path:     admin/{idEnfant}/show
+    defaults: { _controller: "KidzyBundle:Enfant:show" }
+    methods:  GET
+
+enfant_new:
+    path:     admin/new
+    defaults: { _controller: "KidzyBundle:Enfant:new" }
+    methods:  [GET, POST]
+
+enfant_edit:
+    path:     admin/{idEnfant}/edit
+    defaults: { _controller: "KidzyBundle:Enfant:edit" }
+    methods:  [GET, POST]
+
+enfant_delete:
+    path:     admin/{idEnfant}/delete
+    defaults: { _controller: "KidzyBundle:Enfant:delete" }
+    methods:  DELETE
+
+enfant:
+    path:     /enfant
+    defaults: { _controller: "KidzyBundle:Enfant:enfant" }
+
+enfant_add:
+    path:     enfant/add
+    defaults: { _controller: "KidzyBundle:Enfant:add" }
+    methods:  [GET, POST]
+
+modifier:
+    path:     modifier/{id}
+    defaults: { _controller: "KidzyBundle:Enfant:modifier" }
+    methods:  [GET, POST]
+
+enfant_supprimer:
+    path:     /{idEnfant}/supprimer
+    defaults: { _controller: "KidzyBundle:Enfant:supprimer" }
+
+enfant_search:
+    path:     /search
+    defaults: { _controller: "KidzyBundle:Enfant:search" }
+

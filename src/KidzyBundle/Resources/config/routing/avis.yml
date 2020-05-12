@@ -1,0 +1,41 @@
+avis_index:
+    path:     admin/
+    defaults: { _controller: "KidzyBundle:Avis:index" }
+    methods:  GET
+
+avis_show:
+    path:     admin/{idAvis}/show
+    defaults: { _controller: "KidzyBundle:Avis:show" }
+    methods:  GET
+
+avis_new:
+    path:     admin/new
+    defaults: { _controller: "KidzyBundle:Avis:new" }
+    methods:  [GET, POST]
+
+avis_edit:
+    path:     admin/{idAvis}/edit
+    defaults: { _controller: "KidzyBundle:Avis:edit" }
+    methods:  [GET, POST]
+
+avis_delete:
+    path:     admin/{idAvis}/delete
+    defaults: { _controller: "KidzyBundle:Avis:delete" }
+    methods:  DELETE
+
+avisF:
+    path:     /avisF
+    defaults: { _controller: "KidzyBundle:Avis:avisF" }
+
+
+Mesavis:
+    path:     /Mesavis
+    defaults: { _controller: "KidzyBundle:Avis:Mesavis" }
+
+avis_supprimer:
+    path:     /{idAvis}/supprimer
+    defaults: { _controller: "KidzyBundle:Avis:supprimer" }
+
+
+
+

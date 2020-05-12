@@ -1,0 +1,107 @@
+<li class="dropdown notification-list">
+    <a class="nav-link dropdown-toggle  waves-effect" data-toggle="dropdown" role="button"
+       aria-haspopup="false" aria-expanded="false">
+        <i class="fe-bell noti-icon" id="ping"></i>
+
+        <span class="badge badge-danger rounded-circle noti-icon-badge" id="notif_count">{{ notif|length }}</span>
+        {% if notif|length < 1 %}
+            <script>document.getElementById("notif_count").style.visibility = 'hidden'</script>
+        {% endif %}
+
+    </a>
+    <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+        <!-- item-->
+        <div class="dropdown-item noti-title" id="text_notif" >
+            <h5 class="m-0">
+                                    <span class="float-right">
+                                        <a href="{{ path('status') }}" class="text-dark" id="clear">
+                                            <small>Clear All</small>
+                                        </a>
+                                    </span>Notification
+            </h5>
+        </div>
+        <div class="slimscroll noti-scroll" >
+                {% for facture in notif %}
+                    <a href="javascript:void(0);" class="dropdown-item notify-item" id="add">
+                        <div class="notify-icon">
+                            <i class="mdi mdi-cart-plus h1 text-success"></i>
+                        </div>
+                        <p class="notify-details">{{ facture.pack.nomPack }}</p>
+                        <p class="text-muted mb-0 user-msg">
+                            <small><b>Parent :</b> {{ facture.idParent.nom }} {{ facture.idParent.prenom }} | <b>Total
+                                    :</b> {{ facture.total }} DT </small>
+                        </p>
+                    </a>
+                {% endfor %}
+        </div>
+
+
+        <!-- All-->
+        <a href="javascript:void(0);"
+           class="dropdown-item text-center text-primary notify-item notify-all">
+            View all
+            <i class="fi-arrow-right"></i>
+        </a>
+
+    </div>
+</li>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function  onclickclear(event){
+        event.preventDefault();
+        const url = this.href;
+        axios.get(url).then(function (response) {
+            $(".noti-scroll").empty();
+            document.getElementById("notif_count").style.visibility ='hidden'
+        })
+    }
+    document.getElementById("clear").addEventListener('click',onclickclear);
+</script>
+
+{#<script>
+        setInterval(function()
+        {
+            // var nb = document.querySelectorAll(".notify-item").length-5;
+            // if (nb>0)
+            // {document.getElementById("notif_count").innerHTML = nb ;}
+            var request = $.ajax
+            ({
+                type: "GET",
+                url: "{{ path('count') }}",
+                success: function(data)
+                {
+                    if (data>0 ){document.getElementById("notif_count").innerHTML = data ;}
+                }});
+        },1000);
+    let url = new URL('http://localhost:3000/.well-known/mercure');
+    url.searchParams.append('topic', 'ping');
+    const lastEventId = localStorage.getItem('lastEventId');
+    if (lastEventId != null) {
+        url.searchParams.append('Last-Event-ID', lastEventId);
+    }
+    const eventSource = new EventSource(url);
+    eventSource.onmessage = e =>
+    {
+        const data = JSON.parse(e.data)
+        localStorage.setItem('lastEventId', e.lastEventId);
+        document.getElementById('notif_count').style.visibility = 'visible';
+        document.getElementById("text_notif").insertAdjacentHTML('afterend', `
+            <div class="slimscroll noti-scroll" >
+                <a href="javascript:void(0);" class="dropdown-item notify-item" >
+                    <div class="notify-icon">
+                        <i class="mdi mdi-cart-plus h1 text-success"></i>
+                    </div>
+                    <p class="notify-details">${data.pack.nom_pack}</p>
+                    <p class="text-muted mb-0 user-msg">
+                        <small><b>Parent :</b> ${data.parent.nom_parent} ${data.parent.prenom_parent} | <b>Total  :</b> ${data.total} DT </small>
+                    </p>
+                </a>
+            </div>
+                `)
+
+    }
+</script>#}
+
+

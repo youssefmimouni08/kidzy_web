@@ -1,0 +1,55 @@
+{% extends 'baseadmin.html.twig' %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title mt-0 mb-3">Details Avis</h4>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">ID : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ avi.idAvis }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Nom Parent : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{  avi.id  }}</a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Date avis : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ avi.dateAvis|date }} </a></h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2  col-form-label" for="simpleinput">Description avis : </label>
+                                <div class="col-sm-7">
+                                    <h3 class="mt-0"><a class="text-dark">{{ avi.descriptionAvis }} </a></h3>
+                                </div>
+                            </div>
+                            <div class="button-list d-flex justify-content-start">
+                                <a  href="{{ path('avis_index') }}" class="btn btn-primary waves-effect width-md waves-light">Retour</a>
+                                {{ form_start(delete_form) }}
+                                <input type="submit" class="btn btn-danger waves-effect width-md waves-light" value="Supprimer">
+                                {{ form_end(delete_form) }}
+                            </div>
+
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock %}
